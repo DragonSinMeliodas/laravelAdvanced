@@ -16,12 +16,14 @@ class AvailableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
+    public function index() 
+    {    
         /**
          * Availability::all();
          * Availability::orderBy('username','asc|desc')->get();
          * Availability::where('username','<username>')->get();
+         * Availability::orderBy('username','asc|desc')->take(1)->get(); LIMIT
+         * Availability::orderBy('username','asc|desc')->take(1)->paginate(1); Pagination
          */
         $avail = Availability::all();
         return view('avail.index')->with('avail',$avail);
