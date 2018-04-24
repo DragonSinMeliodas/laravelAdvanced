@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Http\RedirectResponse;
+use App\Apointment;
 class ApointmentController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class ApointmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('appoint.create');
     }
 
     /**
@@ -34,7 +35,23 @@ class ApointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'username' => 'required',
+            'name' => 'required',
+            'apointee_name' => 'required',
+            'date' => 'required'
+        ]);
+
+        // Save User
+
+        $appointment = new Apointment;
+        $appointment->patient_username = $request->input('username');
+        $appointment->apointee_username = $request->input('apointee_name');
+        $appointment->apointment_date = $request->input('date');
+        $appointment->save();
+        
+        return redirect()->route('apoint.show',['id'=> $request->input('username')]);
+        // return redirect('/apoint/'+$appointment->patient_username);
     }
 
     /**
@@ -45,7 +62,8 @@ class ApointmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $appointments = Apointment::where('patient_username',$id)->get();
+        return view('appoint.index')->with('appointments',$appointments);
     }
 
     /**
@@ -56,7 +74,8 @@ class ApointmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appointment = Apointment::find($id);
+        return view('appoint.edit')->with('appointment',$appointment);
     }
 
     /**
@@ -79,6 +98,11 @@ class ApointmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appoint = Apointment::where('id',$id)->get()->first();
+        $username = $appoint->patient_username;
+        //return $user;
+        $appoint->delete();
+        return redirect()->route('apoint.show',['id'=> $username]);
+
     }
 }

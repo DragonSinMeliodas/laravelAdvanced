@@ -8,6 +8,6 @@
         <p>User Type : {{$user->designation}}</p> 
     </div>
     <div>
-        <a href="/results/{{$user->id}}">Report</a> | <a href="/appoint/{{$user->id}}">Appointment</a> | <a href="/prescription/{{$user->id}}">Prescription</a>
+        <a href="/results/{{$user->id}}">Report</a> | <a href="/apoint/{{$user->id}}">Appointment</a> | <a href="/prescription/{{$user->id}}">Prescription</a>
     </div>
 @endsection  

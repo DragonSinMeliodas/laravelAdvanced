@@ -45,8 +45,8 @@ class ResultsController extends Controller
      */
     public function show($id)
     {
-        return $results = Results::where('user_id',$id)->get();
-        return view('result.index')->with('result',$results);
+        $results = Results::where('user_id',$id)->get();
+        return view('result.index')->with('results',$results);
     }
 
     /**

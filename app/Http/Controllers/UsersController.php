@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -23,7 +23,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         return view('users.create');
     }
 
@@ -52,7 +52,7 @@ class UsersController extends Controller
         $user->designation = $request->input('designation');
         $user->save();
 
-        return redirect('/user')->with('success', 'User Created');
+        return redirect('/user/create');
 
     }
 
@@ -66,8 +66,13 @@ class UsersController extends Controller
         // return $user;
         // // return $user;
         $user = User::where('username',$request->input('username'))->where('password',$request->input('password'))->first();
-        if($user->designation === "User"){
-            return view('users.user')->with('user',$user);
+        if(!empty($user)){
+            if($user->designation === "User"){
+                return view('users.user')->with('user',$user);
+                // return redirect('/user')->with('user',$user);
+            }else{
+                return view('reception.index')->with('user',$user);
+            }
         }else{
             return view('users.index')->with('error','Login error');
         }
