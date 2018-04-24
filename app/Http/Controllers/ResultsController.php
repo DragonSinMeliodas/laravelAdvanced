@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Results;
 class ResultsController extends Controller
 {
     /**
@@ -45,7 +45,8 @@ class ResultsController extends Controller
      */
     public function show($id)
     {
-        //
+        return $results = Results::where('user_id',$id)->get();
+        return view('result.index')->with('result',$results);
     }
 
     /**
