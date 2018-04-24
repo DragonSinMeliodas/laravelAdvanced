@@ -10,18 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('users.index');
 });
-
+Route::post('/user/login','UsersController@login');
 Route::resource('user', 'UsersController');
 Route::resource('available', 'AvailableController');
 Route::resource('apoint', 'ApointmentController');
 Route::resource('medication', 'MedicationController');
 Route::resource('prescription', 'PrescriptionController');
 Route::resource('results', 'ResultsController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

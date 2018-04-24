@@ -20,6 +20,10 @@
             {{Form::label('password','Password')}}
             {{Form::text('password','',['class'=>'form-control','placeholder'=>'Password'])}}
         </div>
+        <div class="form-group">
+            {{Form::label('designation','Designation')}}
+            {{Form::text('designation','',['class'=>'form-control','placeholder'=>'Designation'])}}
+        </div>
         {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
 
     {!! Form::close() !!}

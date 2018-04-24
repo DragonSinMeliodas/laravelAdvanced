@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 class UsersController extends Controller
 {
     /**
@@ -48,10 +49,28 @@ class UsersController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
+        $user->designation = $request->input('designation');
         $user->save();
 
         return redirect('/user')->with('success', 'User Created');
 
+    }
+
+    public function login(Request $request){
+        $this->validate($request,[
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+        $user = new User;
+        // $user = DB::select("select * from users where username='".$request->input('username')."' and password='".$request->input('password')."'");
+        // return $user;
+        // // return $user;
+        $user = User::where('username',$request->input('username'))->where('password',$request->input('password'))->first();
+        if($user->designation === "User"){
+            return view('users.user')->with('user',$user);
+        }else{
+            return view('users.index')->with('error','Login error');
+        }
     }
 
     /**
