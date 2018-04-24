@@ -15,6 +15,7 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('username');
             $table->date('date');
             $table->boolean('available');
