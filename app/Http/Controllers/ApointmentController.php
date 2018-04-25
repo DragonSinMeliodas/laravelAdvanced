@@ -87,7 +87,20 @@ class ApointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'username' => 'required',
+            'apointee_username' => 'required',
+            'date' => 'required'
+        ]);
+
+
+        $appointment = Apointment::find($id);
+        $appointment->patient_username = $request->input('username');
+        $appointment->apointee_username = $request->input('apointee_username');
+        $appointment->apointment_date = $request->input('date');
+        $appointment->save();
+        
+        return redirect()->route('apoint.show',['id'=> $request->input('username')]);
     }
 
     /**

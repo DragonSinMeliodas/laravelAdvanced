@@ -18,7 +18,7 @@ class CreateAvailabilitiesTable extends Migration
             $table->string('name');
             $table->string('username');
             $table->date('date');
-            $table->boolean('available');
+            $table->boolean('on_duty');
             $table->timestamps();
         });
     }

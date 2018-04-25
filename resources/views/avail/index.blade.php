@@ -3,13 +3,13 @@
 @section('content')
     <h1>Availability</h1>
 
-    @if(count($avail) > 0)
-        @foreach($avail as $a)
+    @if(count($avails) > 0)
+        @foreach($avails as $a)
             <div class="well">
-            <h3><a href="/available/{{$a->id}}">{{$a->username}}</a></h3>
+                <h3><a href="/available/{{$a->id}}">Book</a></h3>
             </div>
         @endforeach
-        {{$avail->links()}}
+        {{-- {{$avail->links()}} --}}
     @else
         <p> No Availability </p>
     @endif

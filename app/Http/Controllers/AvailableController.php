@@ -1,5 +1,5 @@
 <?php
-
+// O->TRUE , 1->FALSE
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -25,8 +25,8 @@ class AvailableController extends Controller
          * Availability::orderBy('username','asc|desc')->take(1)->get(); LIMIT
          * Availability::orderBy('username','asc|desc')->take(1)->paginate(1); Pagination
          */
-        $avail = Availability::all();
-        return view('avail.index')->with('avail',$avail);
+        // $avail = Availability::all();
+        return view('avail.date'); //->with('avail',$avail)
     }
 
     /**
@@ -94,5 +94,10 @@ class AvailableController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dateCheck(Request $request){
+        $availables = Availability::where('date',$request->input('date'))->where('on_duty',1)->get();
+        return view('avail.index')->with('avails',$availables);
     }
 }
