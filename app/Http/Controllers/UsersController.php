@@ -52,7 +52,7 @@ class UsersController extends Controller
         $user->designation = $request->input('designation');
         $user->save();
 
-        return redirect('/user/create');
+        return redirect('/')->with('success','User Created Successfully');
 
     }
 

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 {{-- Laravel Collectives to use form --}}
 @section('content')
-    <h1>Register</h1>
+<div class="container">    
+    <h1 class="text-center">Register</h1>
 
     {!! Form::open(['action' => 'UsersController@store','method'=>'POST']) !!}
         <div class="form-group">
@@ -24,7 +25,8 @@
             {{Form::label('designation','Designation')}}
             {{Form::text('designation','',['class'=>'form-control','placeholder'=>'Designation'])}}
         </div>
-        {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+        {{Form::submit('Register',['class'=>'btn btn-success'])}}
 
     {!! Form::close() !!}
+</div>
 @endsection  
