@@ -2,7 +2,7 @@
 {{-- Laravel Collectives to use form --}}
 @section('content')
     <div class="container">
-        <h1>Book Appointment</h1>
+        <h1>Edit Appointment</h1>
 
         {!! Form::open(['action' => ['ApointmentController@update',$appointment->id],'method'=>'POST']) !!}
             <div class="form-group">

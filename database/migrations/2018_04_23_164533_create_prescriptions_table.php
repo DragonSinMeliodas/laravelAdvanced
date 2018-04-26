@@ -16,7 +16,9 @@ class CreatePrescriptionsTable extends Migration
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('patiend_id');
-            $table->string('medication_id');
+            $table->integer('medication_id')->unsigned();
+            $table->foreign('medication_id')->references('id')->on('medications')->onDelete('cascade');
+            $table->date('expire_at');
             $table->timestamps();
         });
     }

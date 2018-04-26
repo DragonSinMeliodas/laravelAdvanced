@@ -67,12 +67,7 @@ class UsersController extends Controller
         // // return $user;
         $user = User::where('username',$request->input('username'))->where('password',$request->input('password'))->first();
         if(!empty($user)){
-            if($user->designation === "User"){
                 return view('users.user')->with('user',$user);
-                // return redirect('/user')->with('user',$user);
-            }else{
-                return view('reception.index')->with('user',$user);
-            }
         }else{
             return view('users.index')->with('error','Login error');
         }

@@ -11,7 +11,7 @@
             </div>                
         </div>    
         <div class="row">
-                <a href="/results/{{$user->id}}">Report</a> | <a href="/apoint/{{$user->username}}">Appointment</a> | <a href="/prescription/{{$user->id}}">Prescription</a>
+                <a href="/results/{{$user->id}}">Report</a> | <a href="/apoint/{{$user->username}}">Appointment</a> | <a href="/prescription/{{$user->id}}">Prescription</a> | <a href="/available">Check Availability</a>
             </div> 
     </div>
     

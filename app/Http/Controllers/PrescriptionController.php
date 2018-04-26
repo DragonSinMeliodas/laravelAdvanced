@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Prescription;
+use App\Medication;
 
 class PrescriptionController extends Controller
 {
@@ -44,8 +47,13 @@ class PrescriptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+    // //  $pres = Prescription::where('patiend_id',$id)->get();
+        $pres = DB::table('prescriptions')->join('medications',function($join) {
+            $join->on('prescriptions.medication_id','=','medications.id');
+        })->where('prescriptions.patiend_id',$id)->get();
+        // return $pres;
+        return view('pres.index')->with('preses',$pres);
     }
 
     /**
