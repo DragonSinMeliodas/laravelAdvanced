@@ -94,7 +94,6 @@ class ApointmentController extends Controller
             'date' => 'required'
         ]);
 
-        return $request;
         $appointment = Apointment::find($id);
         $appointment->patient_username = $request->input('username');
         $appointment->apointee_username = $request->input('apointee_username');
