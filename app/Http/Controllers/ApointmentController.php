@@ -14,7 +14,8 @@ class ApointmentController extends Controller
      */
     public function index()
     {
-        //
+        $appointments = Apointment::all();
+        return view('appoint.all')->with('appointments',$appointments);
     }
 
     /**
@@ -93,7 +94,7 @@ class ApointmentController extends Controller
             'date' => 'required'
         ]);
 
-
+        return $request;
         $appointment = Apointment::find($id);
         $appointment->patient_username = $request->input('username');
         $appointment->apointee_username = $request->input('apointee_username');

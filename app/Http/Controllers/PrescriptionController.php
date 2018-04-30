@@ -51,7 +51,7 @@ class PrescriptionController extends Controller
     // //  $pres = Prescription::where('patiend_id',$id)->get();
         $pres = DB::table('prescriptions')->join('medications',function($join) {
             $join->on('prescriptions.medication_id','=','medications.id');
-        })->where('prescriptions.patiend_id',$id)->get();
+        })->where('prescriptions.username',$id)->get();
         // return $pres;
         return view('pres.index')->with('preses',$pres);
     }
@@ -64,7 +64,8 @@ class PrescriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prescription = Prescription::find($id);
+        return view('pres.edit')->with('prescription',$prescription);
     }
 
     /**
@@ -76,7 +77,13 @@ class PrescriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'date' => 'required'
+        ]);
+        $prescription = Prescription::find($id);
+        $prescription->expire_at = $request->input('date');
+        $prescription->save();
+        return redirect()->route('prescription.show',['id'=> $prescription->username]);
     }
 
     /**

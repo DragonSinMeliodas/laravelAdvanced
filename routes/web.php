@@ -14,6 +14,9 @@ Route::get('/', function () {
     return view('users.index');
 });
 Route::post('/user/login','UsersController@login');
+Route::post('/apoint/create/admin','ApointmentController@adminCreate');
+Route::post('/apoint/create/delete','ApointmentController@adminDelete');
+Route::post('/apoint/create/admin','ApointmentController@adminCreate');
 Route::post('/available/datecheck','AvailableController@dateCheck');
 Route::resource('user', 'UsersController');
 Route::resource('available', 'AvailableController');

@@ -10,9 +10,16 @@
                 <p>User Type : {{$user->designation}}</p>
             </div>                
         </div>    
+        @if($user->designation != "User")
         <div class="row">
-                <a href="/results/{{$user->id}}">Report</a> | <a href="/apoint/{{$user->username}}">Appointment</a> | <a href="/prescription/{{$user->id}}">Prescription</a> | <a href="/available">Check Availability</a>
-            </div> 
+            <a href="/apoint">Appointment</a> | <a href="/available">Check Availability</a>
+        </div>
+        @else
+        <div class="row">
+            <a href="/results/{{$user->id}}">Report</a> | <a href="/apoint/{{$user->username}}">Appointment</a> | <a href="/prescription/{{$user->username}}">Prescription</a> | <a href="/available">Check Availability</a>
+        </div>
+        @endif
+         
     </div>
     
 @endsection  
