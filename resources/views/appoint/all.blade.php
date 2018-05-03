@@ -4,7 +4,7 @@
     <div class="row">
         <div class="container">
             <h3> All Appointments </h3>
-            <button type="button" class="btn btn-success" onclick="location.href='/apoint/create/admin'"> Book Appointment </button>
+            <button type="button" class="btn btn-success" onclick="location.href='/apoint/create'"> Book Appointment </button>
         </div>
     </div>
     <div class="row">
